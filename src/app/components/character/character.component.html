@@ -1,0 +1,14 @@
+<ng-container *ngIf="character">
+    <h2>{{character.name}}</h2>
+    <p><b>Status:</b> {{character.status}}</p>
+    <p><b>Species:</b> {{character.species}}</p>
+    <p><b>Gender:</b> {{character.gender}}</p>
+    <p><b>Origin:</b> {{character.origin.name}}</p>
+    <p><b>Location:</b> {{character.location.name}}</p>
+    <img [src]="character.image" />
+  </ng-container>
+  
+  <ng-container *ngIf="!character">
+    Character not rendered
+  </ng-container>
+  
