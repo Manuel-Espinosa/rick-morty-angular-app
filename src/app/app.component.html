@@ -1,14 +1,2 @@
-<h1>{{title}}</h1>
-<button (click)="loadCharacters()">Cargar Personajes</button>
-
-<ng-container *ngFor="let character of characters">
-  <app-character [character]="character"></app-character>
-</ng-container>
-
-
-
-<ng-container *ngIf="!characters">
-  No characters to display.
-</ng-container>
-
 <router-outlet></router-outlet>
+<app-navigation></app-navigation>
