@@ -1,33 +1,21 @@
-import {
-  Component,
-  Directive,
-  Injectable,
-  OnInit,
-  inject,
-} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
+import { CharacterService } from 'src/app/shared/character.service';
 
 @Component({
   selector: 'app-catalogue',
   templateUrl: './catalogue.component.html',
   styleUrls: ['./catalogue.component.css'],
 })
-export class CatalogueComponent {
-  title = 'Personajes de Rick & Morty';
-  http = inject(HttpClient);
-
+export class CatalogueComponent implements OnInit {
   characters: Character[] = [];
+  title = 'Personajes de Rick & Morty'; // Add the title property
 
-  url_api = 'https://rickandmortyapi.com/api/character';
+  constructor(private characterService: CharacterService) {}
 
   ngOnInit() {
-    this.loadCharacters();
-  }
-
-  loadCharacters() {
-    this.http.get<{ results: Character[] }>(this.url_api).subscribe((data) => {
-      this.characters = data.results;
+    this.characterService.loadCharacters().subscribe((characters) => {
+      this.characters = characters;
     });
   }
 }
